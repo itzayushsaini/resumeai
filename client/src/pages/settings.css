@@ -1,0 +1,184 @@
+.settings {
+  margin-top: 40px;
+}
+
+.settings-section {
+  display: grid;
+  gap: 20px;
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+
+.settings-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (min-width: 768px) {
+  .settings-section {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+.settings-section-title {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.settings-section-desc {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+.form-grid {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .form-grid .span-2 {
+    grid-column: span 2;
+  }
+}
+
+.settings-email {
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* ---------- Theme picker ---------- */
+
+.theme-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.theme-option {
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  text-align: left;
+  transition:
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.theme-option:hover {
+  border-color: var(--line-strong);
+}
+
+.theme-option[aria-checked="true"] {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ink) 8%, transparent);
+}
+
+.theme-option-label {
+  padding: 8px 4px 2px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.swatch {
+  display: flex;
+  height: 72px;
+  overflow: hidden;
+  border: 1px solid #e4e4e7;
+  border-radius: var(--radius);
+  background: #f4f4f5;
+}
+
+.swatch-rail {
+  width: 28px;
+  border-right: 1px solid #e4e4e7;
+  background: #fafafa;
+}
+
+.swatch-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+}
+
+.swatch-line {
+  width: 48px;
+  height: 8px;
+  border-radius: 2px;
+  background: rgb(17 17 19 / 0.7);
+}
+
+.swatch-card {
+  flex: 1;
+  border: 1px solid #e4e4e7;
+  border-radius: 3px;
+  background: #fff;
+}
+
+.swatch.is-dark {
+  border-color: #2a2a2e;
+  background: #0e0e10;
+}
+
+.swatch.is-dark .swatch-rail {
+  border-color: #222225;
+  background: #111113;
+}
+
+.swatch.is-dark .swatch-line {
+  background: rgb(237 237 239 / 0.7);
+}
+
+.swatch.is-dark .swatch-card {
+  border-color: #26262a;
+  background: #161618;
+}
+
+.swatch-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.swatch-split .swatch {
+  border-radius: 0;
+}
+
+.swatch-split .swatch:first-child {
+  border-right: 0;
+}
+
+.swatch-split .swatch:last-child {
+  border-left: 0;
+}
+
+/* ---------- Danger ---------- */
+
+.danger-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+}
+
+.danger-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.danger-text {
+  font-size: 13px;
+  color: var(--ink-3);
+}

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-# ---------- Build: install everything, compile client and server ----------
+# ---------- Build: install everything and bundle the React client ----------
 FROM node:24-bookworm-slim AS build
 WORKDIR /app
 
@@ -27,10 +27,12 @@ ENV NODE_ENV=production \
 WORKDIR /app
 COPY --from=build --chown=node:node /app/package.json ./
 COPY --from=build --chown=node:node /app/node_modules ./node_modules
+COPY --from=build --chown=node:node /app/shared/package.json ./shared/
+COPY --from=build --chown=node:node /app/shared/src ./shared/src
 COPY --from=build --chown=node:node /app/server/package.json ./server/
-COPY --from=build --chown=node:node /app/server/dist ./server/dist
+COPY --from=build --chown=node:node /app/server/src ./server/src
 COPY --from=build --chown=node:node /app/client/dist ./client/dist
 
 USER node
 EXPOSE 10000
-CMD ["node", "server/dist/index.js"]
+CMD ["node", "server/src/index.js"]

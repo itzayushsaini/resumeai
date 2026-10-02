@@ -1,0 +1,128 @@
+/*
+ * Design tokens. White and grey; primary actions are near-black and blue is
+ * reserved for AI suggestions, links and focus so anything AI-made stands out.
+ * Dark mode swaps the same variables under html.dark.
+ */
+
+:root {
+  /* Surfaces */
+  --canvas: #f4f4f5;
+  --surface: #ffffff;
+  --surface-2: #fafafa;
+  --sunken: #ebebed;
+
+  /* Text */
+  --ink: #111113;
+  --ink-2: #4b4c53;
+  --ink-3: #7b7c84;
+  --ink-4: #a8a9b0;
+
+  /* Lines */
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+
+  /* Interaction overlays */
+  --hover: rgb(17 17 19 / 0.045);
+  --press: rgb(17 17 19 / 0.08);
+
+  /* Primary (buttons) */
+  --primary: #18181b;
+  --primary-hover: #2e2e33;
+  --primary-fg: #ffffff;
+
+  /* AI, links, focus */
+  --brand: #2f5af2;
+  --brand-hover: #2348d6;
+  --brand-soft: #edf1fe;
+  --brand-ink: #1d3fae;
+  --brand-text: #2b55e6;
+
+  /* Status */
+  --good: #15803d;
+  --good-soft: #e8f5ec;
+  --warn: #a15c07;
+  --warn-soft: #fdf3e1;
+  --bad: #c2351f;
+  --bad-soft: #fcebe7;
+  --mark: #fde68a;
+
+  /* Sidebar */
+  --rail: #fafafa;
+  --rail-hover: #f0f0f2;
+  --rail-active: #ffffff;
+  --rail-ink: #111113;
+  --rail-ink-2: #62636b;
+  --rail-line: #e4e4e7;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgb(16 16 20 / 0.04);
+  --shadow-raise: 0 1px 2px rgb(16 16 20 / 0.05), 0 4px 12px -4px rgb(16 16 20 / 0.08);
+  --shadow-pop: 0 2px 6px rgb(16 16 20 / 0.06), 0 16px 40px -12px rgb(16 16 20 / 0.2);
+  --shadow-page: 0 1px 2px rgb(16 16 20 / 0.06), 0 10px 30px -10px rgb(16 16 20 / 0.16);
+  --ring: 0 0 0 3px color-mix(in oklab, var(--brand) 16%, transparent);
+
+  /* Type */
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, monospace;
+
+  /* Shape and motion */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: light;
+}
+
+html.dark {
+  --canvas: #0e0e10;
+  --surface: #161618;
+  --surface-2: #1b1b1e;
+  --sunken: #09090b;
+
+  --ink: #ededef;
+  --ink-2: #a1a1a9;
+  --ink-3: #77777f;
+  --ink-4: #53535a;
+
+  --line: #26262a;
+  --line-strong: #34343a;
+
+  --hover: rgb(255 255 255 / 0.055);
+  --press: rgb(255 255 255 / 0.09);
+
+  --primary: #f4f4f5;
+  --primary-hover: #ffffff;
+  --primary-fg: #111113;
+
+  --brand: #4462f5;
+  --brand-hover: #5470ff;
+  --brand-soft: #1a2348;
+  --brand-ink: #b9c7ff;
+  --brand-text: #8ba2ff;
+
+  --good: #4cc38a;
+  --good-soft: #10261b;
+  --warn: #e3a43c;
+  --warn-soft: #2a200e;
+  --bad: #f07457;
+  --bad-soft: #2d1611;
+  --mark: #6b5a17;
+
+  --rail: #111113;
+  --rail-hover: #1c1c1f;
+  --rail-active: #242428;
+  --rail-ink: #ededef;
+  --rail-ink-2: #8e8e96;
+  --rail-line: #222225;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-raise: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px -4px rgb(0 0 0 / 0.4);
+  --shadow-pop: 0 2px 6px rgb(0 0 0 / 0.3), 0 16px 40px -12px rgb(0 0 0 / 0.6);
+  --shadow-page: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px -10px rgb(0 0 0 / 0.6);
+
+  color-scheme: dark;
+}

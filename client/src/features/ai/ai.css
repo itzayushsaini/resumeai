@@ -1,0 +1,492 @@
+/*
+ * AI writing help inside the editor. Everything AI-made uses the blue
+ * "brand" color, so it's always clear what came from the AI.
+ */
+
+/* ---------- Toggle bar at the top of the content panel ---------- */
+
+.ai-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in oklab, var(--brand) 20%, var(--line));
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--brand-soft) 55%, var(--surface));
+}
+
+.ai-bar-text {
+  min-width: 0;
+}
+
+.ai-bar-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-ink);
+}
+
+.ai-bar-title svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ai-bar-desc {
+  margin-top: 1px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* ---------- Assist strip under the focused bullet ---------- */
+
+.assist {
+  padding: 8px 10px 10px 28px;
+  border-top: 1px dashed var(--line);
+  background: var(--surface-2);
+  animation: fade-in 140ms var(--ease);
+}
+
+.assist-issues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.issue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 12px;
+  color: var(--ink-2);
+  transition:
+    border-color 150ms,
+    color 150ms;
+}
+
+.issue::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--warn);
+}
+
+.issue:hover:not(:disabled) {
+  border-color: color-mix(in oklab, var(--warn) 45%, transparent);
+  color: var(--ink);
+}
+
+.assist-ok {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--good);
+}
+
+.assist-ok svg {
+  width: 13px;
+  height: 13px;
+}
+
+.assist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.ai-tag {
+  margin-right: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-text);
+}
+
+.ai-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid color-mix(in oklab, var(--brand) 22%, transparent);
+  border-radius: 5px;
+  background: var(--brand-soft);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--brand-ink);
+  transition:
+    border-color 150ms,
+    background-color 150ms;
+}
+
+.ai-chip:hover:not(:disabled) {
+  border-color: color-mix(in oklab, var(--brand) 45%, transparent);
+}
+
+.ai-chip:disabled {
+  opacity: 0.55;
+}
+
+.ai-chip svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ai-chip .spinner {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------- Suggestion card ---------- */
+
+.suggestion {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid color-mix(in oklab, var(--brand) 25%, transparent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  animation: pop-in 160ms var(--ease);
+}
+
+.suggestion-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.suggestion-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--brand-text);
+}
+
+.suggestion-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+
+.suggestion-nav button {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  color: var(--ink-3);
+}
+
+.suggestion-nav button:hover:not(:disabled) {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.suggestion-nav button:disabled {
+  opacity: 0.4;
+}
+
+.suggestion-nav svg {
+  width: 12px;
+  height: 12px;
+}
+
+.suggestion-text {
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.suggestion-why {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.suggestion-question {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  background: var(--warn-soft);
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+.suggestion-question strong {
+  font-weight: 600;
+  color: var(--warn);
+}
+
+.suggestion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+/* ---------- Ask for a number ---------- */
+
+.ask-question {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.ask-form {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.ask-form .input {
+  height: 32px;
+  font-size: 13px;
+}
+
+.ask-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.ai-error {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--bad);
+}
+
+.ai-note {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* ---------- Panels: notes → bullets, summary, skills ---------- */
+
+.ai-panel {
+  margin-bottom: 10px;
+  padding: 12px;
+  border: 1px solid color-mix(in oklab, var(--brand) 22%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--brand-soft) 45%, var(--surface));
+  animation: pop-in 160ms var(--ease);
+}
+
+.ai-panel.is-below {
+  margin: 10px 0 0;
+}
+
+.ai-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ai-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand-ink);
+}
+
+.ai-panel-title svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ai-panel-close {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  color: var(--ink-3);
+}
+
+.ai-panel-close:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.ai-panel-close svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ai-panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 8px;
+}
+
+.ai-hint {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.picks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.pick {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 13.5px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.pick input {
+  margin-top: 3px;
+  accent-color: var(--primary);
+}
+
+.pick.is-off {
+  color: var(--ink-3);
+}
+
+.ai-questions {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  background: var(--warn-soft);
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+.ai-questions strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 600;
+  color: var(--warn);
+}
+
+.ai-questions li + li {
+  margin-top: 2px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.option-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.option-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.option-text {
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.suggest-group + .suggest-group {
+  margin-top: 12px;
+}
+
+.suggest-heading {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.suggest-note {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.suggest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.suggest-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 12.5px;
+  color: var(--ink);
+  transition:
+    border-color 150ms,
+    opacity 150ms;
+}
+
+.suggest-chip:hover:not(:disabled) {
+  border-color: var(--ink-4);
+}
+
+.suggest-chip:disabled {
+  opacity: 0.5;
+}
+
+.suggest-chip svg {
+  width: 11px;
+  height: 11px;
+  color: var(--ink-3);
+}
+
+.ai-chip[aria-disabled="true"],
+.issue[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: progress;
+}

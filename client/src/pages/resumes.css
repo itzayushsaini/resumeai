@@ -1,0 +1,134 @@
+.resumes-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.resumes-filter {
+  width: 100%;
+  max-width: 280px;
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 32px 24px;
+  margin-top: 32px;
+}
+
+.resume-card {
+  min-width: 0;
+}
+
+.resume-card-frame {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px rgb(0 0 0 / 0.08);
+  transition:
+    transform 200ms var(--ease),
+    box-shadow 200ms var(--ease);
+}
+
+.resume-card-frame:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-raise),
+    0 0 0 1px rgb(0 0 0 / 0.08);
+}
+
+html.dark .resume-card-frame {
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px rgb(255 255 255 / 0.1);
+}
+
+.resume-card-foot {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.resume-card-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-card-title {
+  display: block;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resume-card-title:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.resume-card-meta {
+  overflow: hidden;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.new-card {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 816 / 1056;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink-3);
+  transition:
+    border-color 150ms,
+    background-color 150ms,
+    color 150ms;
+}
+
+.new-card:hover {
+  border-color: var(--ink-4);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.new-card svg {
+  width: 24px;
+  height: 24px;
+}
+
+.new-card-label {
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.new-card-alt {
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.card-skeleton {
+  aspect-ratio: 816 / 1056;
+  border-radius: var(--radius-sm);
+}
+
+.no-match {
+  margin-top: 8px;
+  font-size: 13.5px;
+  color: var(--ink-3);
+}

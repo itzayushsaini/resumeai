@@ -1,10 +1,20 @@
 # ResumeAI
 
-A resume builder with an honest ATS check, built on the MERN stack with Google Gemini for AI features.
+A resume builder with an honest ATS check and an AI writing copilot, built on the MERN stack in plain JavaScript, with Google Gemini for AI features.
 
-- **Client:** React 19 + Vite, React Router, TanStack Query, Tailwind CSS 4, Radix primitives
-- **Server:** Express 5 + Node, Mongoose (MongoDB Atlas), Better Auth, headless Chrome for PDF export
+- **Client:** React 19 + Vite (JSX), plain CSS files, React Router, TanStack Query, Radix primitives
+- **Server:** Express 5 + Node (ES modules), Mongoose (MongoDB Atlas), Better Auth, headless Chrome for PDF export
 - **Shared:** one Zod schema for resume data, used by both client and server
+
+## AI writing help
+
+- **Live checks** on every bullet as you type: weak start, AI-sounding buzzwords, missing numbers, first person, passive voice, length. Free and instant (rule-based).
+- **One-click rewrites:** Improve, Add a number, Shorten, Sound human. Suggestions never invent facts; when a number would help, the AI asks for it.
+- **Autocomplete:** grey ghost text while you type; Tab accepts.
+- **Write from notes:** describe your work in English, Hindi or Hinglish and get English bullets to pick from.
+- **Summary writer** and **skill suggestions** built only from what's on the resume.
+
+Models default to `gemini-3.6-flash` and `gemini-3.5-flash-lite` (both on the free tier); override with `GEMINI_MODEL_SMART` / `GEMINI_MODEL_FAST`. Busy or rate-limited calls retry once, then fall back to the fast model.
 
 ## Getting started
 
@@ -22,13 +32,13 @@ Requirements: Node 22 or newer, a MongoDB Atlas cluster, and Chrome or Edge inst
    cp server/.env.example server/.env
    ```
 
-   | Variable | What to put there |
-   | --- | --- |
-   | `MONGODB_URI` | Atlas → Connect → Drivers. Replace `<password>`. Allow your IP under Network Access. |
-   | `BETTER_AUTH_SECRET` | Any long random string (32+ characters). |
-   | `GEMINI_API_KEY` | Free key from [Google AI Studio](https://aistudio.google.com/apikey). |
-   | `GOOGLE_*`, `LINKEDIN_*` | Optional. Social sign-in buttons appear only when these are set. |
-   | `CHROME_PATH` | Optional. Auto-detected on Windows and macOS. |
+   | Variable                 | What to put there                                                                    |
+   | ------------------------ | ------------------------------------------------------------------------------------ |
+   | `MONGODB_URI`            | Atlas → Connect → Drivers. Replace `<password>`. Allow your IP under Network Access. |
+   | `BETTER_AUTH_SECRET`     | Any long random string (32+ characters).                                             |
+   | `GEMINI_API_KEY`         | Free key from [Google AI Studio](https://aistudio.google.com/apikey).                |
+   | `GOOGLE_*`, `LINKEDIN_*` | Optional. Social sign-in buttons appear only when these are set.                     |
+   | `CHROME_PATH`            | Optional. Auto-detected on Windows and macOS.                                        |
 
 3. Run the app:
 
@@ -40,12 +50,13 @@ Requirements: Node 22 or newer, a MongoDB Atlas cluster, and Chrome or Edge inst
 
 ## Scripts
 
-| Command | What it does |
-| --- | --- |
-| `npm run dev` | Client and API with hot reload |
-| `npm run build` | Production build of client and server |
-| `npm start` | Runs the built server, which also serves the client |
-| `npm run typecheck` | Type-checks every workspace |
+| Command                      | What it does                                                 |
+| ---------------------------- | ------------------------------------------------------------ |
+| `npm run dev`                | Client and API with hot reload                               |
+| `npm run build`              | Production build of the client (the server runs as-is)       |
+| `npm start`                  | Runs the server, which also serves the built client          |
+| `npm run format`             | Formats the code with Prettier                               |
+| `npm run ai:smoke -w server` | Calls Gemini once per AI feature to check the key and models |
 
 ## Deploying to Render
 
@@ -84,6 +95,7 @@ PDF with a real text layer.
 - [ ] Import and ATS engine: PDF/Word import, rule checks + Gemini analysis, score breakdown
 - [ ] Resume Analyser and career roadmap
 - [ ] Job Match and "Tailor to this job"
-- [ ] AI writing assistant, bullet writer, cover letters
+- [x] AI writing copilot: live checks, rewrites, autocomplete, notes to bullets, summary, skills
+- [ ] Cover letters
 - [ ] Application tracker, career coach, interview prep, Word/TXT export
 - [ ] Landing page polish, Pro plan, performance pass

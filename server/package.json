@@ -4,10 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node --watch --watch-preserve-output --import tsx src/index.ts",
-    "build": "tsup",
-    "start": "node dist/index.js",
-    "typecheck": "tsc --noEmit"
+    "dev": "node --watch-path=./src --watch-path=../shared/src --watch-preserve-output src/index.js",
+    "start": "node src/index.js",
+    "ai:smoke": "node scripts/ai-smoke.js"
   },
   "dependencies": {
     "@google/genai": "^2.26.0",
@@ -20,12 +19,5 @@
     "mongoose": "^9.10.3",
     "puppeteer-core": "^25.12.0",
     "zod": "^4.6.5"
-  },
-  "devDependencies": {
-    "@types/compression": "^1.8.1",
-    "@types/express": "^5.0.6",
-    "@types/node": "^26.6.4",
-    "tsup": "^8.5.1",
-    "tsx": "^4.23.15"
   }
 }

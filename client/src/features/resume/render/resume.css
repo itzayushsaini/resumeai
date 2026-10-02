@@ -16,7 +16,10 @@
   font-family: var(--rz-font);
   font-size: var(--rz-size);
   line-height: var(--rz-lh);
-  font-feature-settings: "kern", "liga", "onum" 0;
+  font-feature-settings:
+    "kern",
+    "liga",
+    "onum" 0;
   font-variant-numeric: lining-nums;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -263,4 +266,28 @@
 
 .rz--minimal .rz-dot {
   color: var(--rz-ink-3);
+}
+
+/* ================================================================== */
+/* Frames used around rendered pages in the app                        */
+/* ================================================================== */
+
+.rz-thumb {
+  overflow: hidden;
+  background: #fff;
+}
+
+/* A page shown as a product visual (landing, sign-in, templates). */
+.resume-sheet {
+  overflow: hidden;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow:
+    var(--shadow-page),
+    0 0 0 1px rgb(0 0 0 / 0.05);
+}
+
+/* Editor preview pages. */
+.rz-page.is-preview {
+  box-shadow: var(--shadow-page);
 }
