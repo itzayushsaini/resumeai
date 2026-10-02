@@ -35,6 +35,10 @@ export function createAuth(db: Db) {
       // Avoid a database read on every request; sessions are re-checked every 5 minutes.
       cookieCache: { enabled: true, maxAge: 5 * 60 },
     },
+    advanced: {
+      // Render and most hosts put the visitor's IP here; used for sign-in rate limiting.
+      ipAddress: { ipAddressHeaders: ["x-forwarded-for"] },
+    },
     user: {
       additionalFields: {
         targetRole: { type: "string", required: false, defaultValue: "", input: true },

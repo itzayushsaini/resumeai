@@ -28,12 +28,20 @@ const schema = z.object({
   CHROME_PATH: optional,
 });
 
-// API_PORT wins in development so tools that set PORT for the client dev server don't collide.
-// In production, hosts set PORT and the API serves the client itself.
-const parsed = schema.safeParse({ ...process.env, PORT: process.env.API_PORT ?? process.env.PORT });
+// Render sets RENDER_EXTERNAL_URL to the service's public URL, so it needn't be configured twice.
+const publicUrl = process.env.RENDER_EXTERNAL_URL || undefined;
+
+const parsed = schema.safeParse({
+  ...process.env,
+  // API_PORT wins in development so tools that set PORT for the client dev server don't collide.
+  // In production, hosts set PORT and the API serves the client itself.
+  PORT: process.env.API_PORT ?? process.env.PORT,
+  CLIENT_URL: process.env.CLIENT_URL || publicUrl,
+  BETTER_AUTH_URL: process.env.BETTER_AUTH_URL || publicUrl,
+});
 
 if (!parsed.success) {
-  console.error("\n  Server config problem in server/.env:\n");
+  console.error("\n  Server config problem (check server/.env or your host's environment variables):\n");
   for (const issue of parsed.error.issues) {
     console.error(`   • ${issue.path.join(".")} ${issue.message}`);
   }

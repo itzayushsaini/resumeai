@@ -18,7 +18,19 @@ export function createApp(auth: Auth) {
   app.disable("x-powered-by");
   app.set("trust proxy", 1);
 
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          // Profile photos from Google or LinkedIn sign-in.
+          "img-src": ["'self'", "data:", "https:"],
+          // The host terminates HTTPS. Upgrading would break the PDF renderer,
+          // which loads the print page over plain http on localhost.
+          "upgrade-insecure-requests": null,
+        },
+      },
+    }),
+  );
   app.use(compression());
 
   // Better Auth reads the raw body itself, so it goes before express.json().
@@ -64,7 +76,9 @@ export function createApp(auth: Auth) {
       express.static(path.join(clientDist, "assets"), { immutable: true, maxAge: "1y" }),
     );
     app.use(express.static(clientDist, { index: false }));
-    app.get("*splat", (_req, res) => {
+    // Every other path is a client-side route.
+    app.get("/{*splat}", (_req, res) => {
+      res.setHeader("Cache-Control", "no-cache");
       res.sendFile(path.join(clientDist, "index.html"));
     });
   }

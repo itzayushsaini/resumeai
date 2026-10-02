@@ -47,6 +47,21 @@ Requirements: Node 22 or newer, a MongoDB Atlas cluster, and Chrome or Edge inst
 | `npm start` | Runs the built server, which also serves the client |
 | `npm run typecheck` | Type-checks every workspace |
 
+## Deploying to Render
+
+The repo includes a `Dockerfile` (Node + Chromium for PDF export) and a `render.yaml` Blueprint.
+It runs as one web service: Express serves the API and the built React app.
+
+1. In MongoDB Atlas → **Network Access**, allow `0.0.0.0/0`. Render's free plan has no fixed
+   outbound IP, so the strong database password is what protects the cluster.
+2. In Render: **New → Blueprint**, connect GitHub and pick this repo.
+3. Fill in `MONGODB_URI` and `GEMINI_API_KEY` when asked. `BETTER_AUTH_SECRET` is generated for
+   you, and the public URL is read from Render's `RENDER_EXTERNAL_URL`.
+4. Click **Apply**. The first build takes a few minutes; later pushes to `main` redeploy automatically.
+
+Free instances sleep after 15 minutes without traffic, so the first visit after a pause takes
+about a minute. If you add a custom domain, set `CLIENT_URL` and `BETTER_AUTH_URL` to it.
+
 ## Project layout
 
 ```

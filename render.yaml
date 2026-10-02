@@ -1,0 +1,22 @@
+# Render Blueprint: Dashboard → New → Blueprint → pick this repo.
+# CLIENT_URL and BETTER_AUTH_URL default to Render's RENDER_EXTERNAL_URL,
+# so only set them if you add a custom domain.
+services:
+  - type: web
+    name: resumeai
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: MONGODB_URI
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: BETTER_AUTH_SECRET
+        generateValue: true

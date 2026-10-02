@@ -43,7 +43,14 @@ function getBrowser(): Promise<Browser> {
       .launch({
         executablePath: findBrowser(),
         headless: true,
-        args: ["--disable-gpu", "--no-first-run", "--no-default-browser-check"],
+        args: [
+          "--disable-gpu",
+          "--no-first-run",
+          "--no-default-browser-check",
+          // Containers (Docker on Render) have no user namespaces for Chrome's sandbox
+          // and a tiny /dev/shm. Only our own print page is ever loaded.
+          ...(process.platform === "linux" ? ["--no-sandbox", "--disable-dev-shm-usage"] : []),
+        ],
       })
       .then((browser) => {
         browser.on("disconnected", () => {
