@@ -1,0 +1,266 @@
+/*
+ * Resume document styles. Always printed on white paper, so these colors
+ * ignore the app's dark mode on purpose. Sizes are in em so the font-size
+ * setting scales the whole document.
+ */
+
+.rz {
+  --rz-ink: #1b1d22;
+  --rz-ink-2: #4f545e;
+  --rz-ink-3: #7a7f88;
+  --rz-rule: #d4d4d0;
+  --rz-ghost: #b9bcc2;
+
+  position: relative;
+  color: var(--rz-ink);
+  font-family: var(--rz-font);
+  font-size: var(--rz-size);
+  line-height: var(--rz-lh);
+  font-feature-settings: "kern", "liga", "onum" 0;
+  font-variant-numeric: lining-nums;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+.rz-page {
+  position: relative;
+  box-sizing: border-box;
+  background: #fff;
+  overflow: hidden;
+}
+
+.rz-block {
+  display: flow-root;
+}
+
+.rz-measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+  contain: layout style;
+}
+
+.rz a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rz-ghost {
+  color: var(--rz-ghost);
+}
+
+/* ---------- Header ---------- */
+
+.rz-name {
+  margin: 0;
+  font-size: 2.15em;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.rz-headline {
+  margin-top: 0.2em;
+  font-size: 1.08em;
+  color: var(--rz-ink-2);
+}
+
+.rz-contact {
+  margin-top: 0.45em;
+  font-size: 0.9em;
+  color: var(--rz-ink-2);
+}
+
+.rz-sep {
+  color: var(--rz-ink-3);
+  padding: 0 0.42em;
+}
+
+.rz-contact .rz-sep {
+  padding: 0 0.15em;
+}
+
+.rz-item {
+  white-space: nowrap;
+}
+
+/* ---------- Section titles ---------- */
+
+.rz-section-title {
+  margin: 0;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rz-accent);
+}
+
+/* ---------- Entries ---------- */
+
+.rz-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.rz-row > :first-child {
+  min-width: 0;
+}
+
+.rz-title {
+  font-weight: 650;
+}
+
+.rz-sub {
+  color: var(--rz-ink);
+}
+
+.rz-dates,
+.rz-loc {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--rz-ink-2);
+}
+
+.rz-muted {
+  color: var(--rz-ink-2);
+}
+
+.rz-link {
+  color: var(--rz-ink-2);
+}
+
+.rz-bullet {
+  display: grid;
+  grid-template-columns: 1.05em 1fr;
+}
+
+.rz-dot {
+  color: var(--rz-ink-2);
+}
+
+.rz-summary {
+  margin: 0;
+}
+
+.rz-skill-name {
+  font-weight: 650;
+}
+
+/* ================================================================== */
+/* Classic                                                             */
+/* ================================================================== */
+
+.rz--classic .rz-header {
+  text-align: center;
+}
+
+.rz--classic .rz-name {
+  font-size: 2.25em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.rz--classic .rz-headline {
+  font-style: italic;
+}
+
+.rz--classic .rz-section-title {
+  padding-bottom: 0.3em;
+  margin-bottom: 0.55em;
+  border-bottom: 0.75px solid var(--rz-rule);
+}
+
+.rz--classic .rz-entry .rz-row + .rz-row .rz-sub {
+  font-style: italic;
+}
+
+/* ================================================================== */
+/* Modern                                                              */
+/* ================================================================== */
+
+.rz--modern .rz-name {
+  font-size: 2.35em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.rz--modern .rz-headline {
+  color: var(--rz-accent);
+  font-weight: 500;
+}
+
+.rz--modern .rz-header {
+  padding-bottom: 0.9em;
+  border-bottom: 2px solid var(--rz-accent);
+}
+
+.rz--modern .rz-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: 0.5em;
+  font-size: 0.82em;
+  letter-spacing: 0.1em;
+}
+
+.rz--modern .rz-section-title::after {
+  content: "";
+  flex: 1;
+  height: 0.75px;
+  background: var(--rz-rule);
+}
+
+.rz--modern .rz-entry .rz-sub {
+  color: var(--rz-accent);
+  font-weight: 500;
+}
+
+.rz--modern .rz-dot {
+  color: var(--rz-accent);
+}
+
+.rz--modern .rz-skill {
+  display: grid;
+  grid-template-columns: 8.5em 1fr;
+  gap: 0.75em;
+}
+
+/* ================================================================== */
+/* Minimal                                                             */
+/* ================================================================== */
+
+.rz--minimal .rz-name {
+  font-size: 2.1em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.rz--minimal .rz-headline {
+  margin-top: 0.15em;
+}
+
+.rz--minimal .rz-section-title {
+  margin-bottom: 0.6em;
+  font-size: 0.76em;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--rz-ink-3);
+}
+
+.rz--minimal .rz-title {
+  font-weight: 700;
+}
+
+.rz--minimal .rz-dates,
+.rz--minimal .rz-loc {
+  color: var(--rz-ink-3);
+}
+
+.rz--minimal .rz-dot {
+  color: var(--rz-ink-3);
+}
